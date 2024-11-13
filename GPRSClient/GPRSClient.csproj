@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BSR.Chain4travel.Camino-Messenger-Protocol.Grpc.Csharp" Version="1.67.10102.12" />
+    <PackageReference Include="BSR.Chain4travel.Camino-Messenger-Protocol.Protocolbuffers.Csharp" Version="28.3.10002.12" />
+    <PackageReference Include="Grpc.Net.Client" Version="2.66.0" />
+  </ItemGroup>
+
+</Project>
