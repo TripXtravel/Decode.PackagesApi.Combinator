@@ -163,5 +163,10 @@ namespace GPRSClient.Services.AccomodationService
                 Longitude = longitude
             };
         }
+
+        public AccommodationSearchRequest CreateAccommodationSearchRequest()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

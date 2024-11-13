@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 //builder.Services.AddScoped<IAccomodationService, GRPCAccomodationService>();
 builder.Services.AddScoped<IFlightsService, MockFlightsService>();
+builder.Services.AddTransient<IAccomodationService, GRPCAccomodationService>();
 
 
 builder.Services.AddControllers();
