@@ -168,5 +168,10 @@ namespace GPRSClient.Services.AccomodationService
         {
             throw new NotImplementedException();
         }
+
+        public AccommodationSearchResult CreateAccommodationSearchResult()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

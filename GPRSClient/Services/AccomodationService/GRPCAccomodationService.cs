@@ -1,5 +1,6 @@
 ﻿using Cmp.Services.Accommodation.V2;
 using Cmp.Types.V2;
+using Google.Protobuf.WellKnownTypes;
 using GPRSClient.Services.Interfaces;
 
 namespace GPRSClient.Services.AccomodationService
@@ -164,6 +165,93 @@ namespace GPRSClient.Services.AccomodationService
             };
         }
 
+
+        public AccommodationSearchResult CreateAccommodationSearchResult()
+        {
+            var result = new AccommodationSearchResult
+            {
+                ResultId = 1,
+                QueryId = -1473264676,
+                Units = { CreateUnit(), CreateUnit() },
+                TotalPriceDetail = CreatePriceDetail(),
+                RateRules =
+        {
+            new Cmp.Types.V1.RateRule
+            {
+                RateType = Cmp.Types.V1.RateRuleType.Flexible,
+                RateDescription = "Fully refundable",
+                RateReference = "refundable_policy"
+            }
+        },
+                CancelPolicy = new Cmp.Types.V2.CancelPolicy
+                {
+                    FreeCancellationUpto = Timestamp.FromDateTime(DateTime.UtcNow.AddDays(2)),
+                },
+                Remarks = "No pets allowed",
+                Bookability = new Cmp.Types.V1.Bookability
+                {
+                    Type = Cmp.Types.V1.BookabilityType.Available
+                }
+            };
+
+            return result;
+        }
+
+        private static Unit CreateUnit()
+        {
+            var services = new Google.Protobuf.Collections.RepeatedField<ServiceFact>();
+            services.Add(new ServiceFact() { Description = "A comfortable standard room with modern amenities.", Code = "MockCode", Quantity = 2 });
+            return new Unit
+            {
+                TravellerIds = { 123, 231 },
+                Type = UnitType.HolidayHome,
+                //Services = services                
+            };
+        }
+
+        private static Cmp.Types.V2.PriceDetail CreatePriceDetail()
+        {
+            return new Cmp.Types.V2.PriceDetail
+            {
+                Price = CreatePrice(),
+                Binding = true,
+                Description = "Total price for 2 nights",
+                LocallyPayable = false,
+                Type = new Cmp.Types.V1.PriceBreakdownType { Code = "asds", FeeCode = Cmp.Types.V1.FeeCode.AdditionalDistance },
+                Breakdowns =
+        {
+            new Cmp.Types.V2.PriceDetail
+            {
+                Price = new Price { Value = "200", Decimals = 2, Currency = new Currency { IsoCurrency = Cmp.Types.V2.IsoCurrency.Usd } },
+                Binding = false,
+                Description = "Breakfast included",
+                LocallyPayable = false,
+                Type = new Cmp.Types.V1.PriceBreakdownType { Code = "asds", FeeCode = Cmp.Types.V1.FeeCode.AdditionalDrive },
+            },
+            new Cmp.Types.V2.PriceDetail
+            {
+                Price = new Price { Value = "50", Decimals = 2, Currency = new Currency { IsoCurrency = Cmp.Types.V2.IsoCurrency.Usd } },
+                Binding = true,
+                Description = "Tourism tax",
+                LocallyPayable = true,
+                Type = new Cmp.Types.V1.PriceBreakdownType { Code = "asds", FeeCode = Cmp.Types.V1.FeeCode.AdditionalWeek },
+            }
+        }
+            };
+        }
+
+        private static Price CreatePrice()
+        {
+            return new Price
+            {
+                Value = "250",
+                Decimals = 2,
+                Currency = new Currency
+                {
+                    IsoCurrency = Cmp.Types.V2.IsoCurrency.Usd
+                }
+            };
+        }
     }
 }
 

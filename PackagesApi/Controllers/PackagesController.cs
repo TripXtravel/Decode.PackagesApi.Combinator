@@ -23,10 +23,12 @@ namespace PackagesApi.Controllers
         [HttpGet]
         public async Task<ActionResult<string>> GetAsync()
         {
-            var response = accomodationService.CreateAccommodationSearchRequest();
+            var request = accomodationService.CreateAccommodationSearchRequest();
             PingTest test = new PingTest();
-            var r = await test.Main(response);
-            return Ok(r);
+            var r = await test.Main(request);
+
+            var mockResponse = accomodationService.CreateAccommodationSearchResult();
+            return Ok(mockResponse);
         }
         [HttpGet]
         public async Task<ActionResult<PackagesSearchResponse>> SearchAsync([FromBody] PackagesSearchRequest request)
