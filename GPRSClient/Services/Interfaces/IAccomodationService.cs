@@ -1,6 +1,10 @@
-﻿namespace GPRSClient.Services.Interfaces
+﻿using Cmp.Services.Accommodation.V2;
+
+namespace GPRSClient.Services.Interfaces
 {
     public interface IAccomodationService
     {
+        public AccommodationProductInfoResponse Search(AccommodationProductInfoRequest request);
+
     }
 }

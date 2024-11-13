@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Cmp.Services.Accommodation.V2;
+using GPRSClient.Services.Interfaces;
 
 namespace GPRSClient.Services.AccomodationService
 {
-    internal class GRPCAccomodationService
+    public class GRPCAccomodationService : IAccomodationService
     {
+        public AccommodationProductInfoResponse Search(AccommodationProductInfoRequest request)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
