@@ -9,7 +9,10 @@ namespace GPRSClient.Services.AccomodationService
     {
         public AccommodationSearchResponse Search(AccommodationSearchRequest request)
         {
-            return new AccommodationSearchResponse();
+            var response = new AccommodationSearchResponse();
+            response.Results.Add(CreateAccommodationSearchResult());
+
+            return response;
         }
 
         public AccommodationSearchRequest CreateAccommodationSearchRequest()
