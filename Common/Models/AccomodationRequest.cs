@@ -8,6 +8,6 @@ namespace PackagesApi.Combinator.Models
         public string SearchId { get; set; }
         public IEnumerable<Traveller> Traveller { get; set; }
         public SearchParameters SearchParameters { get; set; }
-
+        public int Rooms { get; set; }
     }
 }

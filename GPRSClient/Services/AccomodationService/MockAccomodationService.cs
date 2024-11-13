@@ -6,7 +6,7 @@ namespace GPRSClient.Services.AccomodationService
 {
     public class MockAccomodationService : IAccomodationService
     {
-        public AccommodationProductInfoResponse Search(AccommodationProductInfoRequest request)
+        public AccommodationProductInfoResponse Search(AccommodationSearchRequest request)
         {
             var accomodationResult1 = new AccommodationSearchResult();
             accomodationResult1.ResultId = 1;

@@ -5,7 +5,7 @@ namespace GPRSClient.Services.Interfaces
     public interface IAccomodationService
     {
         public AccommodationSearchRequest CreateAccommodationSearchRequest();
-        public AccommodationProductInfoResponse Search(AccommodationProductInfoRequest request);
+        public AccommodationProductInfoResponse Search(AccommodationSearchRequest request);
 
     }
 }
