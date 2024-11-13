@@ -1,3 +1,4 @@
+using Cmp.Services.Transport.V1;
 using GPRSClient;
 using GPRSClient.Models;
 using GPRSClient.Services.Interfaces;
@@ -30,13 +31,17 @@ namespace PackagesApi.Controllers
             var mockResponse = accomodationService.CreateAccommodationSearchResult();
             return Ok(mockResponse);
         }
-        [HttpGet]
+        [HttpPost]
         public async Task<ActionResult<PackagesSearchResponse>> SearchAsync([FromBody] PackagesSearchRequest request)
         {
             //generate separate requests for the messenger
-            accomodationService.Search(request.Accomodation.First());
-            flightsService.Search(request.Transport.First());
+            var accomodations = accomodationService.Search(request.Accomodation.First());
+            var flights = flightsService.Search(request.Transport.First());
             var response = new PackagesSearchResponse();
+
+            response.Flights = flights.Results.ToList();
+            response.Hotels = accomodations.Results.ToList();
+
             return Ok(response);
         }
     }
