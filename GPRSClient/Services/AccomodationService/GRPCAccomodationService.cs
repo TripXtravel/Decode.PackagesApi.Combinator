@@ -7,9 +7,9 @@ namespace GPRSClient.Services.AccomodationService
 {
     public class GRPCAccomodationService : IAccomodationService
     {
-        public AccommodationProductInfoResponse Search(AccommodationSearchRequest request)
+        public AccommodationSearchResponse Search(AccommodationSearchRequest request)
         {
-            return new AccommodationProductInfoResponse();
+            return new AccommodationSearchResponse();
         }
 
         public AccommodationSearchRequest CreateAccommodationSearchRequest()

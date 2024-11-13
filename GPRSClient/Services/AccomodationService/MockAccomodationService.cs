@@ -6,7 +6,7 @@ namespace GPRSClient.Services.AccomodationService
 {
     public class MockAccomodationService : IAccomodationService
     {
-        public AccommodationProductInfoResponse Search(AccommodationSearchRequest request)
+        public AccommodationSearchResponse Search(AccommodationSearchRequest request)
         {
             var accomodationResult1 = new AccommodationSearchResult();
             accomodationResult1.ResultId = 1;
@@ -50,50 +50,51 @@ namespace GPRSClient.Services.AccomodationService
                 accomodationSearchResponse.Results.Add(accomodationSearchResults);
             }
             //return accomodationSearchResponse;
+            return new AccommodationSearchResponse();
 
-            var response = new AccommodationProductInfoResponse();
+            //var response = new AccommodationProductInfoResponse();
 
-            // Create multiple properties with varying data
-            var property1 = CreateProperty(
-                "Hotel Beach Antalya",
-                "Hotel Antalya",
-                CategoryRating._40,
-                CategoryUnit.Stars,
-                Cmp.Types.V1.ProductStatus.New,
-                new[] { "AYT", "GZP" },
-                "it@tripx.se",
-                Cmp.Types.V2.EmailType.Support,
-                new List<(string Code, int Number, Cmp.Types.V2.ProductCodeType Type)>
-                {
-                    ("ASD12938123", 123, Cmp.Types.V2.ProductCodeType.Supplier),
-                    ("ASD12938124", 124, Cmp.Types.V2.ProductCodeType.Supplier),
-                    ("ASD12938125", 125, Cmp.Types.V2.ProductCodeType.Supplier)
-                },
-                123.0, 12331.0
-            );
+            //// Create multiple properties with varying data
+            //var property1 = CreateProperty(
+            //    "Hotel Beach Antalya",
+            //    "Hotel Antalya",
+            //    CategoryRating._40,
+            //    CategoryUnit.Stars,
+            //    Cmp.Types.V1.ProductStatus.New,
+            //    new[] { "AYT", "GZP" },
+            //    "it@tripx.se",
+            //    Cmp.Types.V2.EmailType.Support,
+            //    new List<(string Code, int Number, Cmp.Types.V2.ProductCodeType Type)>
+            //    {
+            //        ("ASD12938123", 123, Cmp.Types.V2.ProductCodeType.Supplier),
+            //        ("ASD12938124", 124, Cmp.Types.V2.ProductCodeType.Supplier),
+            //        ("ASD12938125", 125, Cmp.Types.V2.ProductCodeType.Supplier)
+            //    },
+            //    123.0, 12331.0
+            //);
 
-            var property2 = CreateProperty(
-                "Hotel Mountain View",
-                "Mountain Resorts",
-                CategoryRating._50,
-                CategoryUnit.Stars,
-                Cmp.Types.V1.ProductStatus.Modified,
-                new[] { "IST", "ADB" },
-                "contact@mountainview.com",
-                Cmp.Types.V2.EmailType.Support,
-                new List<(string Code, int Number, Cmp.Types.V2.ProductCodeType Type)>
-                {
-                    ("MTV102938", 200, Cmp.Types.V2.ProductCodeType.Icao),
-                    ("MTV102939", 201, Cmp.Types.V2.ProductCodeType.Giata)
-                },
-                45.0, 90.0
-            );
+            //var property2 = CreateProperty(
+            //    "Hotel Mountain View",
+            //    "Mountain Resorts",
+            //    CategoryRating._50,
+            //    CategoryUnit.Stars,
+            //    Cmp.Types.V1.ProductStatus.Modified,
+            //    new[] { "IST", "ADB" },
+            //    "contact@mountainview.com",
+            //    Cmp.Types.V2.EmailType.Support,
+            //    new List<(string Code, int Number, Cmp.Types.V2.ProductCodeType Type)>
+            //    {
+            //        ("MTV102938", 200, Cmp.Types.V2.ProductCodeType.Icao),
+            //        ("MTV102939", 201, Cmp.Types.V2.ProductCodeType.Giata)
+            //    },
+            //    45.0, 90.0
+            //);
 
-            // Add properties to response
-            response.Properties.Add(property1);
-            response.Properties.Add(property2);
+            //// Add properties to response
+            //response.Properties.Add(property1);
+            //response.Properties.Add(property2);
 
-            return response;
+            //return response;
         }
 
         // Helper method to create a property with all required details

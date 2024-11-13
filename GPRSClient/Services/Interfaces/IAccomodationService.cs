@@ -6,7 +6,7 @@ namespace GPRSClient.Services.Interfaces
     {
         public AccommodationSearchRequest CreateAccommodationSearchRequest();
         AccommodationSearchResult CreateAccommodationSearchResult();
-        public AccommodationProductInfoResponse Search(AccommodationSearchRequest request);
+        public AccommodationSearchResponse Search(AccommodationSearchRequest request);
 
     }
 }
