@@ -11,6 +11,7 @@ namespace GPRSClient
             using var channel = GrpcChannel.ForAddress("https://0x1b6c39dc2b8fb73b0ab20c711dd5e5d2d3a5163c:messenger.chain4travel.com:9090");
 
             // Create a client using the generated client stub
+            
             var client = new Cmp.Services.Ping.V1.PingService.PingServiceClient(channel);
 
             // Create a request
