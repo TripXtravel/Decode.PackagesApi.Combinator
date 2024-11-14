@@ -178,14 +178,14 @@ namespace GPRSClient.Services.AccomodationService
                 Units = { CreateUnit(), CreateUnit() },
                 TotalPriceDetail = CreatePriceDetail(),
                 RateRules =
-        {
-            new Cmp.Types.V1.RateRule
-            {
-                RateType = Cmp.Types.V1.RateRuleType.Flexible,
-                RateDescription = "Fully refundable",
-                RateReference = "refundable_policy"
-            }
-        },
+                {
+                    new Cmp.Types.V1.RateRule
+                    {
+                        RateType = Cmp.Types.V1.RateRuleType.Flexible,
+                        RateDescription = "Fully refundable",
+                        RateReference = "refundable_policy"
+                    }
+                },
                 CancelPolicy = new Cmp.Types.V2.CancelPolicy
                 {
                     FreeCancellationUpto = Timestamp.FromDateTime(DateTime.UtcNow.AddDays(2)),
@@ -222,24 +222,24 @@ namespace GPRSClient.Services.AccomodationService
                 LocallyPayable = false,
                 Type = new Cmp.Types.V1.PriceBreakdownType { Code = "asds", FeeCode = Cmp.Types.V1.FeeCode.AdditionalDistance },
                 Breakdowns =
-        {
-            new Cmp.Types.V2.PriceDetail
-            {
-                Price = new Price { Value = "200", Decimals = 2, Currency = new Currency { IsoCurrency = Cmp.Types.V2.IsoCurrency.Usd } },
-                Binding = false,
-                Description = "Breakfast included",
-                LocallyPayable = false,
-                Type = new Cmp.Types.V1.PriceBreakdownType { Code = "asds", FeeCode = Cmp.Types.V1.FeeCode.AdditionalDrive },
-            },
-            new Cmp.Types.V2.PriceDetail
-            {
-                Price = new Price { Value = "50", Decimals = 2, Currency = new Currency { IsoCurrency = Cmp.Types.V2.IsoCurrency.Usd } },
-                Binding = true,
-                Description = "Tourism tax",
-                LocallyPayable = true,
-                Type = new Cmp.Types.V1.PriceBreakdownType { Code = "asds", FeeCode = Cmp.Types.V1.FeeCode.AdditionalWeek },
-            }
-        }
+                {
+                    new Cmp.Types.V2.PriceDetail
+                    {
+                        Price = new Price { Value = "200", Decimals = 2, Currency = new Currency { IsoCurrency = Cmp.Types.V2.IsoCurrency.Usd } },
+                        Binding = false,
+                        Description = "Breakfast included",
+                        LocallyPayable = false,
+                        Type = new Cmp.Types.V1.PriceBreakdownType { Code = "asds", FeeCode = Cmp.Types.V1.FeeCode.AdditionalDrive },
+                    },
+                    new Cmp.Types.V2.PriceDetail
+                    {
+                        Price = new Price { Value = "50", Decimals = 2, Currency = new Currency { IsoCurrency = Cmp.Types.V2.IsoCurrency.Usd } },
+                        Binding = true,
+                        Description = "Tourism tax",
+                        LocallyPayable = true,
+                        Type = new Cmp.Types.V1.PriceBreakdownType { Code = "asds", FeeCode = Cmp.Types.V1.FeeCode.AdditionalWeek },
+                    }
+                }
             };
         }
 

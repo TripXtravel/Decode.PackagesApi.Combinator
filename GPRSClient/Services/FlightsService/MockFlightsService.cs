@@ -40,7 +40,7 @@ namespace GPRSClient.Services.FlightsService
                     {
                         Nanos = 100
                     },
-                    LocationCode = new Cmp.Types.V2.LocationCode() { Code = "asd", Type = Cmp.Types.V2.LocationCodeType.IcaoCode }
+                    LocationCode = new Cmp.Types.V2.LocationCode() { Code = "DBX", Type = Cmp.Types.V2.LocationCodeType.IcaoCode }
                 },
                 Baggage = new Cmp.Types.V1.Baggage()
                 {
@@ -54,7 +54,7 @@ namespace GPRSClient.Services.FlightsService
                     {
                         Nanos = 100
                     },
-                    LocationCode = new Cmp.Types.V2.LocationCode() { Code = "asd", Type = Cmp.Types.V2.LocationCodeType.IcaoCode }
+                    LocationCode = new Cmp.Types.V2.LocationCode() { Code = "AYT", Type = Cmp.Types.V2.LocationCodeType.IcaoCode }
                 },
                 Price = new Cmp.Types.V2.Price() {
                     Currency = new Cmp.Types.V2.Currency() { TokenCurrency = new Cmp.Types.V2.TokenCurrency() { ContractAddress = "address" }, IsoCurrency = Cmp.Types.V2.IsoCurrency.Eur },

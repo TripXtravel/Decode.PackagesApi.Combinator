@@ -31,12 +31,13 @@ namespace PackagesApi.Controllers
             var mockResponse = accomodationService.CreateAccommodationSearchResult();
             return Ok(mockResponse);
         }
-        [HttpPost]
+
+        [HttpPost("search")]
         public async Task<ActionResult<PackagesSearchResponse>> SearchAsync([FromBody] PackagesSearchRequest request)
         {
             //generate separate requests for the messenger
-            var accomodations = accomodationService.Search(request.Accomodation.First());
-            var flights = flightsService.Search(request.Transport.First());
+            var accomodations = accomodationService.Search(request.Accomodation.FirstOrDefault());
+            var flights = flightsService.Search(request.Transport.FirstOrDefault());
             var response = new PackagesSearchResponse();
 
             response.Flights = flights.Results.ToList();
@@ -44,7 +45,7 @@ namespace PackagesApi.Controllers
 
             foreach (var hotel in response.Hotels)
             {
-                foreach(var flight in response.Flights)
+                foreach (var flight in response.Flights)
                 {
                     response.Packages.Add(new Packages
                     {
