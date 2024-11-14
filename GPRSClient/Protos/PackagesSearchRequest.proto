@@ -1,0 +1,14 @@
+// packages.proto
+syntax = "proto3";
+
+package cmp.services.packages.v1;
+
+// Import statements for the other .proto files
+import "accommodation.proto";
+import "transport.proto";
+
+// Define the main message
+message PackagesSearchRequest {
+  repeated cmp.services.accommodation.v2.AccommodationSearchRequest accommodation = 1;
+  repeated cmp.services.transport.v2.TransportSearchRequest transport = 2;
+}

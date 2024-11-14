@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package cmp.services.packages.v1;
+
+import "AccommodationSearchResult.proto";  // Assuming this file defines AccommodationSearchResult
+import "TransportSearchResult.proto";      // Assuming this file defines TransportSearchResult
+
+// Define PackagesSearchResponse
+message PackagesSearchResponse {
+  repeated cmp.services.accommodation.v2.AccommodationSearchResult hotels = 1;
+  repeated cmp.services.transport.v2.TransportSearchResult flights = 2;
+  repeated Package packages = 3;
+}
+
+// Define Package message
+message Package {
+  string id = 1;       // Using string to represent Guid (UUID)
+  int32 hotelId = 2;
+  int32 flightId = 3;
+}
