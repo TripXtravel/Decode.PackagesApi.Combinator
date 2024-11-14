@@ -21,7 +21,7 @@ namespace GPRSClient.Services.AccomodationService
             requestId.Value = Helpers.RandomStringHelper.GenerateRandomString(5);
 
 
-            var request = new Cmp.Services.Accommodation.V2.AccommodationSearchRequest
+            var request = new AccommodationSearchRequest
             {
                 Header = new Cmp.Types.V1.RequestHeader
                 {
@@ -36,7 +36,7 @@ namespace GPRSClient.Services.AccomodationService
                         }
                     }
                 },
-                Metadata = new Cmp.Types.V2.SearchRequestMetadata()
+                Metadata = new SearchRequestMetadata()
                 {
                     ExternalSessionId = Helpers.RandomStringHelper.GenerateRandomString(10),
                     RequestId = requestId
@@ -48,13 +48,13 @@ namespace GPRSClient.Services.AccomodationService
                     CreateQuery3(),
                     CreateQuery4()
                 },
-                SearchParametersGeneric = new Cmp.Types.V2.SearchParameters
+                SearchParametersGeneric = new SearchParameters
                 {
                     BrandCodes = { "et", "enim irure Ut", "veniam amet", "ex laboris nostrud mollit labore", "consectetur ad Lorem" },
-                    Currency = new Cmp.Types.V2.Currency
+                    Currency = new Currency
                     {
-                        IsoCurrency = Cmp.Types.V2.IsoCurrency.Cdf,
-                        TokenCurrency = new Cmp.Types.V2.TokenCurrency
+                        IsoCurrency = IsoCurrency.Cdf,
+                        TokenCurrency = new TokenCurrency
                         {
                             ContractAddress = "proident sunt"
                         }
@@ -67,7 +67,7 @@ namespace GPRSClient.Services.AccomodationService
                     IncludeCombinations = true,
                     IncludeOnRequest = true,
                     Language = (Cmp.Types.V1.Language)81,
-                    Market = Cmp.Types.V2.Country.Nc,
+                    Market = Country.Nc,
                     MaxOptions = -1520182189,
                     SearchDescriptionText = "dolore nostrud",
                     Sorting = new Cmp.Types.V1.Sorting
@@ -88,17 +88,17 @@ namespace GPRSClient.Services.AccomodationService
                 QueryId = -1473264676,
                 SearchParametersAccommodation = new AccommodationSearchParameters
                 {
-                    LocationCodes = new Cmp.Types.V2.LocationCodes
+                    LocationCodes = new LocationCodes
                     {
                         Codes =
                         {
-                            new LocationCode { Code = "sit quis Ut nulla", Type = Cmp.Types.V2.LocationCodeType._3AlphaCode },
-                            new LocationCode { Code = "ad reprehenderit elit tempor", Type = (Cmp.Types.V2.LocationCodeType)11 },
-                            new LocationCode { Code = "eu eiusmod ullamco in Duis", Type = Cmp.Types.V2.LocationCodeType.HereId }
+                            new LocationCode { Code = "sit quis Ut nulla", Type = LocationCodeType._3AlphaCode },
+                            new LocationCode { Code = "ad reprehenderit elit tempor", Type = (LocationCodeType)11 },
+                            new LocationCode { Code = "eu eiusmod ullamco in Duis", Type = LocationCodeType.HereId }
                         }
                     },
-                    LocationCoordinates = new Cmp.Types.V2.Coordinates { Latitude = -52241880.494714186, Longitude = -1075615.0050410926 },
-                    LocationGeoTree = new Cmp.Types.V2.GeoTree { Country = Cmp.Types.V2.Country.Sc, Region = "Lorem sunt eu", CityOrResort = "Duis" },
+                    LocationCoordinates = new Coordinates { Latitude = -52241880.494714186, Longitude = -1075615.0050410926 },
+                    LocationGeoTree = new GeoTree { Country = Country.Sc, Region = "Lorem sunt eu", CityOrResort = "Duis" },
                     MealPlanCodes = { new Cmp.Types.V1.MealPlan { Code = Cmp.Types.V1.MealPlanCode.AiMinus, Description = "irure proident" } },
                     RatePlans =
                     {
@@ -115,11 +115,11 @@ namespace GPRSClient.Services.AccomodationService
                 QueryId = -1406962554,
                 SearchParametersAccommodation = new AccommodationSearchParameters
                 {
-                    LocationCodes = new Cmp.Types.V2.LocationCodes
+                    LocationCodes = new LocationCodes
                     {
-                        Codes = { new Cmp.Types.V2.LocationCode { Code = "et non cupidatat cillum", Type = Cmp.Types.V2.LocationCodeType.ProviderCode } }
+                        Codes = { new LocationCode { Code = "et non cupidatat cillum", Type = LocationCodeType.ProviderCode } }
                     },
-                    LocationCoordinates = new Cmp.Types.V2.Coordinates { Latitude = 99298836.4953902, Longitude = 64718032.39222962 },
+                    LocationCoordinates = new Coordinates { Latitude = 99298836.4953902, Longitude = 64718032.39222962 },
                     MealPlanCodes =
                     {
                         new Cmp.Types.V1.MealPlan{ Code = Cmp.Types.V1.MealPlanCode.Do, Description = "nostrud dolor" }
@@ -135,11 +135,11 @@ namespace GPRSClient.Services.AccomodationService
                 QueryId = 625405259,
                 SearchParametersAccommodation = new AccommodationSearchParameters
                 {
-                    LocationCodes = new Cmp.Types.V2.LocationCodes
+                    LocationCodes = new LocationCodes
                     {
-                        Codes = { new Cmp.Types.V2.LocationCode { Code = "eiusmod ex occaecat", Type = (Cmp.Types.V2.LocationCodeType)6 } }
+                        Codes = { new LocationCode { Code = "eiusmod ex occaecat", Type = (LocationCodeType)6 } }
                     },
-                    LocationCoordinates = new Cmp.Types.V2.Coordinates { Latitude = 3420395.826354608, Longitude = 16885397.05836156 },
+                    LocationCoordinates = new Coordinates { Latitude = 3420395.826354608, Longitude = 16885397.05836156 },
                     MealPlanCodes =
                     {
                         new Cmp.Types.V1.MealPlan { Code = Cmp.Types.V1.MealPlanCode.Lo, Description = "deserunt" }
@@ -155,11 +155,11 @@ namespace GPRSClient.Services.AccomodationService
                 QueryId = 1486677580,
                 SearchParametersAccommodation = new AccommodationSearchParameters
                 {
-                    LocationCodes = new Cmp.Types.V2.LocationCodes
+                    LocationCodes = new LocationCodes
                     {
-                        Codes = { new Cmp.Types.V2.LocationCode { Code = "culpa occaecat", Type = Cmp.Types.V2.LocationCodeType.Unspecified } }
+                        Codes = { new LocationCode { Code = "culpa occaecat", Type = LocationCodeType.Unspecified } }
                     },
-                    LocationCoordinates = new Cmp.Types.V2.Coordinates { Latitude = 33272033.83711499, Longitude = 32878192.071919754 },
+                    LocationCoordinates = new Coordinates { Latitude = 33272033.83711499, Longitude = 32878192.071919754 },
                     MealPlanCodes =
                     {
                         new Cmp.Types.V1.MealPlan { Code = (Cmp.Types.V1.MealPlanCode)7, Description = "cupidatat eu" }
@@ -186,7 +186,7 @@ namespace GPRSClient.Services.AccomodationService
                         RateReference = "refundable_policy"
                     }
                 },
-                CancelPolicy = new Cmp.Types.V2.CancelPolicy
+                CancelPolicy = new CancelPolicy
                 {
                     FreeCancellationUpto = Timestamp.FromDateTime(DateTime.UtcNow.AddDays(2)),
                 },
@@ -212,9 +212,9 @@ namespace GPRSClient.Services.AccomodationService
             };
         }
 
-        private static Cmp.Types.V2.PriceDetail CreatePriceDetail()
+        private static PriceDetail CreatePriceDetail()
         {
-            return new Cmp.Types.V2.PriceDetail
+            return new PriceDetail
             {
                 Price = CreatePrice(),
                 Binding = true,
@@ -223,17 +223,17 @@ namespace GPRSClient.Services.AccomodationService
                 Type = new Cmp.Types.V1.PriceBreakdownType { Code = "asds", FeeCode = Cmp.Types.V1.FeeCode.AdditionalDistance },
                 Breakdowns =
                 {
-                    new Cmp.Types.V2.PriceDetail
+                    new PriceDetail
                     {
-                        Price = new Price { Value = "200", Decimals = 2, Currency = new Currency { IsoCurrency = Cmp.Types.V2.IsoCurrency.Usd } },
+                        Price = new Price { Value = "200", Decimals = 2, Currency = new Currency { IsoCurrency = IsoCurrency.Usd } },
                         Binding = false,
                         Description = "Breakfast included",
                         LocallyPayable = false,
                         Type = new Cmp.Types.V1.PriceBreakdownType { Code = "asds", FeeCode = Cmp.Types.V1.FeeCode.AdditionalDrive },
                     },
-                    new Cmp.Types.V2.PriceDetail
+                    new PriceDetail
                     {
-                        Price = new Price { Value = "50", Decimals = 2, Currency = new Currency { IsoCurrency = Cmp.Types.V2.IsoCurrency.Usd } },
+                        Price = new Price { Value = "50", Decimals = 2, Currency = new Currency { IsoCurrency = IsoCurrency.Usd } },
                         Binding = true,
                         Description = "Tourism tax",
                         LocallyPayable = true,
@@ -251,7 +251,7 @@ namespace GPRSClient.Services.AccomodationService
                 Decimals = 2,
                 Currency = new Currency
                 {
-                    IsoCurrency = Cmp.Types.V2.IsoCurrency.Usd
+                    IsoCurrency = IsoCurrency.Usd
                 }
             };
         }
