@@ -31,6 +31,9 @@ namespace PackagesApi.Controllers
             response.Flights = flights.Results.ToList();
             response.Hotels = accomodations.Results.ToList();
 
+            var hotelId = 1;
+            var flightId = 1;
+
             foreach (var hotel in response.Hotels)
             {
                 foreach (var flight in response.Flights)
@@ -38,10 +41,14 @@ namespace PackagesApi.Controllers
                     response.Packages.Add(new Packages
                     {
                         Id = Guid.NewGuid(),
-                        FlightId = flight.ResultId,
-                        Hotelid = hotel.ResultId
+                        FlightId = flightId,
+                        Hotelid = hotelId
                     });
+
+                    flightId++;
                 }
+                hotelId++;
+                flightId = 1;
             }
 
             return Ok(response);
