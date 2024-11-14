@@ -1,6 +1,7 @@
 ﻿using Cmp.Services.Accommodation.V2;
 using Cmp.Types.V2;
 using Google.Protobuf.WellKnownTypes;
+using GPRSClient.Models;
 using GPRSClient.Options;
 using GPRSClient.Services.Interfaces;
 using Grpc.Core;
@@ -18,17 +19,7 @@ namespace GPRSClient.Services.AccomodationService
             _options = options.Value;
         }
 
-        public AccommodationSearchRequest CreateAccommodationSearchRequest()
-        {
-            throw new NotImplementedException();
-        }
-
-        public AccommodationSearchResult CreateAccommodationSearchResult()
-        {
-            throw new NotImplementedException();
-        }
-
-        public AccommodationSearchResponse Search(AccommodationSearchRequest request)
+        public AccommodationSearchResponse Search(PackagesSearchRequest request)
         {            
             throw new NotImplementedException();
         }

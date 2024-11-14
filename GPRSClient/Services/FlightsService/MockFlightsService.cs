@@ -1,12 +1,13 @@
 ﻿using Cmp.Services.Transport.V2;
 using Google.Protobuf.WellKnownTypes;
+using GPRSClient.Models;
 using GPRSClient.Services.Interfaces;
 
 namespace GPRSClient.Services.FlightsService
 {
     public class MockFlightsService : IFlightsService
     {
-        public TransportSearchResponse Search(TransportSearchRequest transportSearchRequest)
+        public TransportSearchResponse Search(PackagesSearchRequest transportSearchRequest)
         {
             var result = new TransportSearchResult();
             result.QueryId = 123;
@@ -40,7 +41,7 @@ namespace GPRSClient.Services.FlightsService
                     {
                         Nanos = 100
                     },
-                    LocationCode = new Cmp.Types.V2.LocationCode() { Code = "DBX", Type = Cmp.Types.V2.LocationCodeType.IcaoCode }
+                    LocationCode = new Cmp.Types.V2.LocationCode() { Code = transportSearchRequest.SearchParameters.Destination, Type = Cmp.Types.V2.LocationCodeType.IcaoCode }
                 },
                 Baggage = new Cmp.Types.V1.Baggage()
                 {
@@ -48,15 +49,16 @@ namespace GPRSClient.Services.FlightsService
                     TravellerId = 1,
                     Type = Cmp.Types.V1.BaggageType.CarryOn
                 },
-                Departure= new TransitEvent()
+                Departure = new TransitEvent()
                 {
                     DateTime = new Timestamp()
                     {
                         Nanos = 100
                     },
-                    LocationCode = new Cmp.Types.V2.LocationCode() { Code = "AYT", Type = Cmp.Types.V2.LocationCodeType.IcaoCode }
+                    LocationCode = new Cmp.Types.V2.LocationCode() { Code = transportSearchRequest.SearchParameters.Departure, Type = Cmp.Types.V2.LocationCodeType.IcaoCode }
                 },
-                Price = new Cmp.Types.V2.Price() {
+                Price = new Cmp.Types.V2.Price()
+                {
                     Currency = new Cmp.Types.V2.Currency() { TokenCurrency = new Cmp.Types.V2.TokenCurrency() { ContractAddress = "address" }, IsoCurrency = Cmp.Types.V2.IsoCurrency.Eur },
                     Value = "100"
                 },
@@ -76,7 +78,7 @@ namespace GPRSClient.Services.FlightsService
                     {
                         Nanos = 100
                     },
-                    LocationCode = new Cmp.Types.V2.LocationCode() { Code = "AYT", Type = Cmp.Types.V2.LocationCodeType.IcaoCode }
+                    LocationCode = new Cmp.Types.V2.LocationCode() { Code = transportSearchRequest.SearchParameters.Destination, Type = Cmp.Types.V2.LocationCodeType.IcaoCode }
                 },
                 Baggage = new Cmp.Types.V1.Baggage()
                 {
@@ -90,7 +92,7 @@ namespace GPRSClient.Services.FlightsService
                     {
                         Nanos = 100
                     },
-                    LocationCode = new Cmp.Types.V2.LocationCode() { Code = "DBX", Type = Cmp.Types.V2.LocationCodeType.IcaoCode }
+                    LocationCode = new Cmp.Types.V2.LocationCode() { Code = transportSearchRequest.SearchParameters.Departure, Type = Cmp.Types.V2.LocationCodeType.IcaoCode }
                 },
                 Price = new Cmp.Types.V2.Price()
                 {
@@ -105,7 +107,7 @@ namespace GPRSClient.Services.FlightsService
                 }
             };
 
-            var trip = new Cmp.Services.Transport.V2.Trip();
+            var trip = new Trip();
             trip.Segments.Add(tripSegment1);
             trip.Segments.Add(tripSegment2);
 

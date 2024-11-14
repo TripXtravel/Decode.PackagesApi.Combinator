@@ -7,10 +7,13 @@ namespace GPRSClient.Services.AccomodationService
 {
     public class MockAccomodationService : IAccomodationService
     {
-        public AccommodationSearchResponse Search(AccommodationSearchRequest request)
+        public AccommodationSearchResponse Search(GPRSClient.Models.PackagesSearchRequest request)
         {
             var response = new AccommodationSearchResponse();
-            response.Results.Add(CreateAccommodationSearchResult());
+            for (var i = 0;i<5;i++)
+            {
+                response.Results.Add(CreateAccommodationSearchResult(request.SearchParameters.DepartureDate));
+            }
 
             return response;
         }
@@ -169,7 +172,7 @@ namespace GPRSClient.Services.AccomodationService
         }
 
 
-        public AccommodationSearchResult CreateAccommodationSearchResult()
+        public AccommodationSearchResult CreateAccommodationSearchResult(DateTime fromDate)
         {
             var result = new AccommodationSearchResult
             {
@@ -185,11 +188,7 @@ namespace GPRSClient.Services.AccomodationService
                         RateDescription = "Fully refundable",
                         RateReference = "refundable_policy"
                     }
-                },
-                CancelPolicy = new CancelPolicy
-                {
-                    FreeCancellationUpto = Timestamp.FromDateTime(DateTime.UtcNow.AddDays(2)),
-                },
+                },                
                 Remarks = "No pets allowed",
                 Bookability = new Cmp.Types.V1.Bookability
                 {
@@ -198,7 +197,7 @@ namespace GPRSClient.Services.AccomodationService
             };
 
             return result;
-        }
+        }               
 
         private static Unit CreateUnit()
         {
