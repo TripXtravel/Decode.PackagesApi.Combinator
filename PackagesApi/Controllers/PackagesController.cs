@@ -22,7 +22,7 @@ namespace PackagesApi.Controllers
         [HttpPost("search")]
         public async Task<ActionResult<PackagesSearchResponse>> SearchAsync([FromBody] PackagesSearchRequest request)
         {
-            var accomodations = accomodationService.Search(request);
+            var accomodations = await accomodationService.Search(request);
             var flights = flightsService.Search(request);
             var response = new PackagesSearchResponse();
 

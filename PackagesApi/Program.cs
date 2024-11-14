@@ -10,7 +10,7 @@ builder.Services.Configure<GRPCOptions>(builder.Configuration.GetSection("GRPCOp
 
 // Add services to the container.
 builder.Services.AddScoped<IFlightsService, MockFlightsService>();
-builder.Services.AddTransient<IAccomodationService, MockAccomodationService>();
+builder.Services.AddTransient<IAccomodationService, GRPCAccomodationService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
