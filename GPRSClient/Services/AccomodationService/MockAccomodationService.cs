@@ -9,9 +9,9 @@ public class MockAccomodationService : IAccomodationService
     public AccommodationSearchResponse Search(Models.PackagesSearchRequest request)
     {
         var response = new AccommodationSearchResponse();
-        for (var i = 0;i<5;i++)
+        for (var i = 1;i<6;i++)
         {
-            response.Results.Add(CreateAccommodationSearchResult(request.SearchParameters.DepartureDate, request.SearchParameters.ReturnDate));
+            response.Results.Add(CreateAccommodationSearchResult(i, request.SearchParameters.DepartureDate, request.SearchParameters.ReturnDate));
         }
 
         return response;
@@ -170,11 +170,11 @@ public class MockAccomodationService : IAccomodationService
         };
     }
 
-    public AccommodationSearchResult CreateAccommodationSearchResult(DateTime fromDate, DateTime toDate)
+    public AccommodationSearchResult CreateAccommodationSearchResult(int hotelId, DateTime fromDate, DateTime toDate)
     {
         var result = new AccommodationSearchResult
         {
-            ResultId = 1,
+            ResultId = hotelId,
             QueryId = -1473264676,
             Units = { CreateUnit(fromDate, toDate), CreateUnit(fromDate, toDate) },
             TotalPriceDetail = CreatePriceDetail(),
