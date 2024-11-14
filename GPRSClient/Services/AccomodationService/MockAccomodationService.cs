@@ -1,5 +1,6 @@
 ﻿using Cmp.Services.Accommodation.V2;
-using Cmp.Types.V1;
+using Cmp.Types.V2;
+using Google.Protobuf.WellKnownTypes;
 using GPRSClient.Services.Interfaces;
 
 namespace GPRSClient.Services.AccomodationService
@@ -8,171 +9,251 @@ namespace GPRSClient.Services.AccomodationService
     {
         public AccommodationSearchResponse Search(AccommodationSearchRequest request)
         {
-            var accomodationResult1 = new AccommodationSearchResult();
-            accomodationResult1.ResultId = 1;
-            accomodationResult1.QueryId = 1;
-            var bookability = new Cmp.Types.V1.Bookability();
-            bookability.ConfirmationTime.Hours = 12;
-            bookability.ConfirmationTime.Minutes = 0;
-            accomodationResult1.Bookability = bookability;
-            var cancePenalty = new Cmp.Types.V2.CancelPenalty();
-            cancePenalty.Description = "No cancelation";
-            var cancelPenalties = new Google.Protobuf.Collections.RepeatedField<Cmp.Types.V2.CancelPenalty>();
-            cancelPenalties.Add(cancePenalty);
-            var penalties = cancelPenalties;
-            var cancelPolicy = new Cmp.Types.V2.CancelPolicy();
-            cancelPolicy.CancelPenalties.Add(penalties);
-            accomodationResult1.CancelPolicy = cancelPolicy;
-            var units = new Google.Protobuf.Collections.RepeatedField<Unit>();
-            var unit1 = new Unit();
+            var response = new AccommodationSearchResponse();
+            response.Results.Add(CreateAccommodationSearchResult());
 
-            var bed1 = new Bed();
-            bed1.Type = BedType.King;
-            bed1.Count = 1;
-
-            var bed2 = new Bed();
-            bed1.Type = BedType.King;
-            bed1.Count = 1;
-
-            var beds = new Google.Protobuf.Collections.RepeatedField<Bed>();
-            beds.Add(bed1);
-            beds.Add(bed2);
-            unit1.Beds.Add(beds);
-
-            units.Add(unit1);
-            accomodationResult1.Units.Add(units);
-            var totalPriceDetail = new Cmp.Types.V2.PriceDetail();
-
-            var accomodationSearchResults = new List<AccommodationSearchResult>();
-            var accomodationSearchResponse = new AccommodationSearchResponse();
-            foreach (var accomodationSearchResult in accomodationSearchResults)
-            {
-                accomodationSearchResponse.Results.Add(accomodationSearchResults);
-            }
-            //return accomodationSearchResponse;
-            return new AccommodationSearchResponse();
-
-            //var response = new AccommodationProductInfoResponse();
-
-            //// Create multiple properties with varying data
-            //var property1 = CreateProperty(
-            //    "Hotel Beach Antalya",
-            //    "Hotel Antalya",
-            //    CategoryRating._40,
-            //    CategoryUnit.Stars,
-            //    Cmp.Types.V1.ProductStatus.New,
-            //    new[] { "AYT", "GZP" },
-            //    "it@tripx.se",
-            //    Cmp.Types.V2.EmailType.Support,
-            //    new List<(string Code, int Number, Cmp.Types.V2.ProductCodeType Type)>
-            //    {
-            //        ("ASD12938123", 123, Cmp.Types.V2.ProductCodeType.Supplier),
-            //        ("ASD12938124", 124, Cmp.Types.V2.ProductCodeType.Supplier),
-            //        ("ASD12938125", 125, Cmp.Types.V2.ProductCodeType.Supplier)
-            //    },
-            //    123.0, 12331.0
-            //);
-
-            //var property2 = CreateProperty(
-            //    "Hotel Mountain View",
-            //    "Mountain Resorts",
-            //    CategoryRating._50,
-            //    CategoryUnit.Stars,
-            //    Cmp.Types.V1.ProductStatus.Modified,
-            //    new[] { "IST", "ADB" },
-            //    "contact@mountainview.com",
-            //    Cmp.Types.V2.EmailType.Support,
-            //    new List<(string Code, int Number, Cmp.Types.V2.ProductCodeType Type)>
-            //    {
-            //        ("MTV102938", 200, Cmp.Types.V2.ProductCodeType.Icao),
-            //        ("MTV102939", 201, Cmp.Types.V2.ProductCodeType.Giata)
-            //    },
-            //    45.0, 90.0
-            //);
-
-            //// Add properties to response
-            //response.Properties.Add(property1);
-            //response.Properties.Add(property2);
-
-            //return response;
-        }
-
-        // Helper method to create a property with all required details
-        private PropertyExtendedInfo CreateProperty(
-            string name, string chain, CategoryRating categoryRating, CategoryUnit categoryUnit, Cmp.Types.V1.ProductStatus status,
-            IEnumerable<string> airportCodes, string emailAddress, Cmp.Types.V2.EmailType emailType,
-            IEnumerable<(string Code, int Number, Cmp.Types.V2.ProductCodeType Type)> productCodes,
-            double latitude, double longitude)
-        {
-            var property = new PropertyExtendedInfo();
-
-            SetBasicPropertyInfo(property, name, chain, categoryRating, categoryUnit, status);
-            AddAirportCodes(property, airportCodes);
-            AddContactEmails(property, emailAddress, emailType);
-            AddProductCodes(property, productCodes);
-            SetCoordinates(property, latitude, longitude);
-
-            return property;
-        }
-
-        // Updated helper methods with parameters
-        private void SetBasicPropertyInfo(PropertyExtendedInfo property, string name, string chain, CategoryRating categoryRating, CategoryUnit categoryUnit, Cmp.Types.V1.ProductStatus status)
-        {
-            property.Property.Name = name;
-            property.Property.Chain = chain;
-            property.Property.CategoryRating = categoryRating;
-            property.Property.CategoryUnit = categoryUnit;
-            property.Property.Status = status;
-        }
-
-        private void AddAirportCodes(PropertyExtendedInfo property, IEnumerable<string> airportCodes)
-        {
-            foreach (var airport in airportCodes)
-            {
-                property.Property.Airports.Add(airport);
-            }
-        }
-
-        private void AddContactEmails(PropertyExtendedInfo property, string emailAddress, Cmp.Types.V2.EmailType emailType)
-        {
-            var email = new Cmp.Types.V2.Email
-            {
-                Address = emailAddress,
-                Type = emailType
-            };
-            property.Property.ContactInfo.Emails.Add(email);
-        }
-
-        private void AddProductCodes(PropertyExtendedInfo property, IEnumerable<(string Code, int Number, Cmp.Types.V2.ProductCodeType Type)> productCodes)
-        {
-            foreach (var (code, number, type) in productCodes)
-            {
-                property.Property.ProductCodes.Add(new Cmp.Types.V2.ProductCode
-                {
-                    Code = code,
-                    Number = number,
-                    Type = type
-                });
-            }
-        }
-
-        private void SetCoordinates(PropertyExtendedInfo property, double latitude, double longitude)
-        {
-            property.Property.Coordinates = new Cmp.Types.V2.Coordinates
-            {
-                Latitude = latitude,
-                Longitude = longitude
-            };
+            return response;
         }
 
         public AccommodationSearchRequest CreateAccommodationSearchRequest()
         {
-            throw new NotImplementedException();
+            var requestId = new Cmp.Types.V1.UUID();
+            requestId.Value = Helpers.RandomStringHelper.GenerateRandomString(5);
+
+
+            var request = new Cmp.Services.Accommodation.V2.AccommodationSearchRequest
+            {
+                Header = new Cmp.Types.V1.RequestHeader
+                {
+                    BaseHeader = new Cmp.Types.V1.Header
+                    {
+                        EndUserWalletAddress = "esse culpa ea cupidatat",
+                        Version = new Cmp.Types.V1.Version
+                        {
+                            Major = 723314657,
+                            Minor = -2144637630,
+                            Patch = -174160266
+                        }
+                    }
+                },
+                Metadata = new Cmp.Types.V2.SearchRequestMetadata()
+                {
+                    ExternalSessionId = Helpers.RandomStringHelper.GenerateRandomString(10),
+                    RequestId = requestId
+                },
+                Queries =
+                {
+                    CreateQuery1(),
+                    CreateQuery2(),
+                    CreateQuery3(),
+                    CreateQuery4()
+                },
+                SearchParametersGeneric = new Cmp.Types.V2.SearchParameters
+                {
+                    BrandCodes = { "et", "enim irure Ut", "veniam amet", "ex laboris nostrud mollit labore", "consectetur ad Lorem" },
+                    Currency = new Cmp.Types.V2.Currency
+                    {
+                        IsoCurrency = Cmp.Types.V2.IsoCurrency.Cdf,
+                        TokenCurrency = new Cmp.Types.V2.TokenCurrency
+                        {
+                            ContractAddress = "proident sunt"
+                        }
+                    },
+                    Filters =
+                     {
+                         new Cmp.Types.V1.Filter { Code = "Lorem pariatur proident", Description = "exercitation ipsum commodo ut", Type = Cmp.Types.V1.FilterType.ProviderCode, Value = "velit aute veniam non" },
+                         new Cmp.Types.V1.Filter { Code = "nostrud in et", Description = "aute", Type = Cmp.Types.V1.FilterType.Unspecified, Value = "amet" }
+                     },
+                    IncludeCombinations = true,
+                    IncludeOnRequest = true,
+                    Language = (Cmp.Types.V1.Language)81,
+                    Market = Cmp.Types.V2.Country.Nc,
+                    MaxOptions = -1520182189,
+                    SearchDescriptionText = "dolore nostrud",
+                    Sorting = new Cmp.Types.V1.Sorting
+                    {
+                        SortingOrder = Cmp.Types.V1.SortingOrder.Ascending,
+                        SortingType = Cmp.Types.V1.SortingType.Price
+                    }
+                }
+            };
+
+            return request;
         }
+
+        private AccommodationSearchQuery CreateQuery1()
+        {
+            return new AccommodationSearchQuery
+            {
+                QueryId = -1473264676,
+                SearchParametersAccommodation = new AccommodationSearchParameters
+                {
+                    LocationCodes = new Cmp.Types.V2.LocationCodes
+                    {
+                        Codes =
+                        {
+                            new LocationCode { Code = "sit quis Ut nulla", Type = Cmp.Types.V2.LocationCodeType._3AlphaCode },
+                            new LocationCode { Code = "ad reprehenderit elit tempor", Type = (Cmp.Types.V2.LocationCodeType)11 },
+                            new LocationCode { Code = "eu eiusmod ullamco in Duis", Type = Cmp.Types.V2.LocationCodeType.HereId }
+                        }
+                    },
+                    LocationCoordinates = new Cmp.Types.V2.Coordinates { Latitude = -52241880.494714186, Longitude = -1075615.0050410926 },
+                    LocationGeoTree = new Cmp.Types.V2.GeoTree { Country = Cmp.Types.V2.Country.Sc, Region = "Lorem sunt eu", CityOrResort = "Duis" },
+                    MealPlanCodes = { new Cmp.Types.V1.MealPlan { Code = Cmp.Types.V1.MealPlanCode.AiMinus, Description = "irure proident" } },
+                    RatePlans =
+                    {
+                        new Cmp.Types.V1.RatePlan { RatePlanCode = "ut", RatePlanType = (Cmp.Types.V1.RatePlanType)14, RatePlanDescription = "sit nostrud veniam enim" }
+                    }
+                }
+            };
+        }
+
+        private AccommodationSearchQuery CreateQuery2()
+        {
+            return new AccommodationSearchQuery
+            {
+                QueryId = -1406962554,
+                SearchParametersAccommodation = new AccommodationSearchParameters
+                {
+                    LocationCodes = new Cmp.Types.V2.LocationCodes
+                    {
+                        Codes = { new Cmp.Types.V2.LocationCode { Code = "et non cupidatat cillum", Type = Cmp.Types.V2.LocationCodeType.ProviderCode } }
+                    },
+                    LocationCoordinates = new Cmp.Types.V2.Coordinates { Latitude = 99298836.4953902, Longitude = 64718032.39222962 },
+                    MealPlanCodes =
+                    {
+                        new Cmp.Types.V1.MealPlan{ Code = Cmp.Types.V1.MealPlanCode.Do, Description = "nostrud dolor" }
+                    }
+                }
+            };
+        }
+
+        private AccommodationSearchQuery CreateQuery3()
+        {
+            return new AccommodationSearchQuery
+            {
+                QueryId = 625405259,
+                SearchParametersAccommodation = new AccommodationSearchParameters
+                {
+                    LocationCodes = new Cmp.Types.V2.LocationCodes
+                    {
+                        Codes = { new Cmp.Types.V2.LocationCode { Code = "eiusmod ex occaecat", Type = (Cmp.Types.V2.LocationCodeType)6 } }
+                    },
+                    LocationCoordinates = new Cmp.Types.V2.Coordinates { Latitude = 3420395.826354608, Longitude = 16885397.05836156 },
+                    MealPlanCodes =
+                    {
+                        new Cmp.Types.V1.MealPlan { Code = Cmp.Types.V1.MealPlanCode.Lo, Description = "deserunt" }
+                    }
+                }
+            };
+        }
+
+        private AccommodationSearchQuery CreateQuery4()
+        {
+            return new AccommodationSearchQuery
+            {
+                QueryId = 1486677580,
+                SearchParametersAccommodation = new AccommodationSearchParameters
+                {
+                    LocationCodes = new Cmp.Types.V2.LocationCodes
+                    {
+                        Codes = { new Cmp.Types.V2.LocationCode { Code = "culpa occaecat", Type = Cmp.Types.V2.LocationCodeType.Unspecified } }
+                    },
+                    LocationCoordinates = new Cmp.Types.V2.Coordinates { Latitude = 33272033.83711499, Longitude = 32878192.071919754 },
+                    MealPlanCodes =
+                    {
+                        new Cmp.Types.V1.MealPlan { Code = (Cmp.Types.V1.MealPlanCode)7, Description = "cupidatat eu" }
+                    }
+                }
+            };
+        }
+
 
         public AccommodationSearchResult CreateAccommodationSearchResult()
         {
-            throw new NotImplementedException();
+            var result = new AccommodationSearchResult
+            {
+                ResultId = 1,
+                QueryId = -1473264676,
+                Units = { CreateUnit(), CreateUnit() },
+                TotalPriceDetail = CreatePriceDetail(),
+                RateRules =
+        {
+            new Cmp.Types.V1.RateRule
+            {
+                RateType = Cmp.Types.V1.RateRuleType.Flexible,
+                RateDescription = "Fully refundable",
+                RateReference = "refundable_policy"
+            }
+        },
+                CancelPolicy = new Cmp.Types.V2.CancelPolicy
+                {
+                    FreeCancellationUpto = Timestamp.FromDateTime(DateTime.UtcNow.AddDays(2)),
+                },
+                Remarks = "No pets allowed",
+                Bookability = new Cmp.Types.V1.Bookability
+                {
+                    Type = Cmp.Types.V1.BookabilityType.Available
+                }
+            };
+
+            return result;
+        }
+
+        private static Unit CreateUnit()
+        {
+            var services = new Google.Protobuf.Collections.RepeatedField<ServiceFact>();
+            services.Add(new ServiceFact() { Description = "A comfortable standard room with modern amenities.", Code = "MockCode", Quantity = 2 });
+            return new Unit
+            {
+                TravellerIds = { 123, 231 },
+                Type = UnitType.HolidayHome,
+                //Services = services                
+            };
+        }
+
+        private static Cmp.Types.V2.PriceDetail CreatePriceDetail()
+        {
+            return new Cmp.Types.V2.PriceDetail
+            {
+                Price = CreatePrice(),
+                Binding = true,
+                Description = "Total price for 2 nights",
+                LocallyPayable = false,
+                Type = new Cmp.Types.V1.PriceBreakdownType { Code = "asds", FeeCode = Cmp.Types.V1.FeeCode.AdditionalDistance },
+                Breakdowns =
+        {
+            new Cmp.Types.V2.PriceDetail
+            {
+                Price = new Price { Value = "200", Decimals = 2, Currency = new Currency { IsoCurrency = Cmp.Types.V2.IsoCurrency.Usd } },
+                Binding = false,
+                Description = "Breakfast included",
+                LocallyPayable = false,
+                Type = new Cmp.Types.V1.PriceBreakdownType { Code = "asds", FeeCode = Cmp.Types.V1.FeeCode.AdditionalDrive },
+            },
+            new Cmp.Types.V2.PriceDetail
+            {
+                Price = new Price { Value = "50", Decimals = 2, Currency = new Currency { IsoCurrency = Cmp.Types.V2.IsoCurrency.Usd } },
+                Binding = true,
+                Description = "Tourism tax",
+                LocallyPayable = true,
+                Type = new Cmp.Types.V1.PriceBreakdownType { Code = "asds", FeeCode = Cmp.Types.V1.FeeCode.AdditionalWeek },
+            }
+        }
+            };
+        }
+
+        private static Price CreatePrice()
+        {
+            return new Price
+            {
+                Value = "250",
+                Decimals = 2,
+                Currency = new Currency
+                {
+                    IsoCurrency = Cmp.Types.V2.IsoCurrency.Usd
+                }
+            };
         }
     }
 }
