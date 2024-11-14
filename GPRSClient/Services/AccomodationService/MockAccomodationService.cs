@@ -65,6 +65,7 @@ public class MockAccomodationService : IAccomodationService
         {
             TravellerIds = { 123, 231 },
             Type = UnitType.HolidayHome,
+            SupplierRoomName = "Double Room Sea View",
             TravelPeriod = travelPeriod
         };
     }
