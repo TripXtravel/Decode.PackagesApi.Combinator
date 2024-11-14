@@ -78,7 +78,7 @@ namespace GPRSClient.Services.FlightsService
                     {
                         Nanos = 100
                     },
-                    LocationCode = new Cmp.Types.V2.LocationCode() { Code = transportSearchRequest.SearchParameters.Destination, Type = Cmp.Types.V2.LocationCodeType.IcaoCode }
+                    LocationCode = new Cmp.Types.V2.LocationCode() { Code = transportSearchRequest.SearchParameters.Departure, Type = Cmp.Types.V2.LocationCodeType.IcaoCode }
                 },
                 Baggage = new Cmp.Types.V1.Baggage()
                 {
@@ -92,7 +92,7 @@ namespace GPRSClient.Services.FlightsService
                     {
                         Nanos = 100
                     },
-                    LocationCode = new Cmp.Types.V2.LocationCode() { Code = transportSearchRequest.SearchParameters.Departure, Type = Cmp.Types.V2.LocationCodeType.IcaoCode }
+                    LocationCode = new Cmp.Types.V2.LocationCode() { Code = transportSearchRequest.SearchParameters.Destination, Type = Cmp.Types.V2.LocationCodeType.IcaoCode }
                 },
                 Price = new Cmp.Types.V2.Price()
                 {
