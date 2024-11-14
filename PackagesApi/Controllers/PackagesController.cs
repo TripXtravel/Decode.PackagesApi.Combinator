@@ -1,5 +1,3 @@
-using Cmp.Services.Transport.V1;
-using GPRSClient;
 using GPRSClient.Models;
 using GPRSClient.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
