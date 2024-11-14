@@ -35,7 +35,6 @@ namespace PackagesApi.Controllers
         [HttpPost("search")]
         public async Task<ActionResult<PackagesSearchResponse>> SearchAsync([FromBody] PackagesSearchRequest request)
         {
-            //generate separate requests for the messenger
             var accomodations = accomodationService.Search(request.Accomodation.FirstOrDefault());
             var flights = flightsService.Search(request.Transport.FirstOrDefault());
             var response = new PackagesSearchResponse();
