@@ -112,4 +112,79 @@ public class MockAccomodationService : IAccomodationService
             }
         };
     }
+
+    private AccommodationSearchQuery CreateQuery2(DateTime startDate, DateTime endDate)
+    {
+        return new AccommodationSearchQuery
+        {
+            QueryId = 2,
+            SearchParametersAccommodation = new AccommodationSearchParameters
+            {
+                LocationCodes = new LocationCodes
+                {
+                    Codes = { new LocationCode { Code = "et non cupidatat cillum", Type = LocationCodeType.ProviderCode } }
+                },
+                LocationCoordinates = new Coordinates { Latitude = 99298836.4953902, Longitude = 64718032.39222962 },
+                MealPlanCodes =
+                {
+                    new Cmp.Types.V1.MealPlan{ Code = Cmp.Types.V1.MealPlanCode.Do, Description = "nostrud dolor" }
+                }
+            },
+            TravelPeriod = new Cmp.Types.V1.TravelPeriod()
+            {
+                StartDate = DateHelper.ToDate(startDate),
+                EndDate = DateHelper.ToDate(endDate),
+            }
+        };
+    }
+
+    private AccommodationSearchQuery CreateQuery3(DateTime startDate, DateTime endDate)
+    {
+        return new AccommodationSearchQuery
+        {
+            QueryId = 3,
+            SearchParametersAccommodation = new AccommodationSearchParameters
+            {
+                LocationCodes = new LocationCodes
+                {
+                    Codes = { new LocationCode { Code = "eiusmod ex occaecat", Type = (LocationCodeType)6 } }
+                },
+                LocationCoordinates = new Coordinates { Latitude = 3420395.826354608, Longitude = 16885397.05836156 },
+                MealPlanCodes =
+                {
+                    new Cmp.Types.V1.MealPlan { Code = Cmp.Types.V1.MealPlanCode.Lo, Description = "deserunt" }
+                }
+            },
+            TravelPeriod = new Cmp.Types.V1.TravelPeriod()
+            {
+                StartDate = DateHelper.ToDate(startDate),
+                EndDate = DateHelper.ToDate(endDate),
+            }
+        };
+    }
+
+    private AccommodationSearchQuery CreateQuery4(DateTime startDate, DateTime endDate)
+    {
+        return new AccommodationSearchQuery
+        {
+            QueryId = 4,
+            SearchParametersAccommodation = new AccommodationSearchParameters
+            {
+                LocationCodes = new LocationCodes
+                {
+                    Codes = { new LocationCode { Code = "culpa occaecat", Type = LocationCodeType.Unspecified } }
+                },
+                LocationCoordinates = new Coordinates { Latitude = 33272033.83711499, Longitude = 32878192.071919754 },
+                MealPlanCodes =
+                {
+                    new Cmp.Types.V1.MealPlan { Code = (Cmp.Types.V1.MealPlanCode)7, Description = "cupidatat eu" }
+                }
+            },
+            TravelPeriod = new Cmp.Types.V1.TravelPeriod()
+            {
+                StartDate = DateHelper.ToDate(startDate),
+                EndDate = DateHelper.ToDate(endDate),
+            }
+        };
+    }
 }

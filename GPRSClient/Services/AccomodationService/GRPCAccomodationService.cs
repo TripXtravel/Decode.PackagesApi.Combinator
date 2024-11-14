@@ -61,9 +61,6 @@ public class GRPCAccomodationService : IAccomodationService
             Queries =
             {
                 CreateQuery1(startDate, endDate),
-                //CreateQuery2(startDate, endDate),
-                //CreateQuery3(startDate, endDate),
-                //CreateQuery4(startDate, endDate)
             },
             SearchParametersGeneric = new Cmp.Types.V2.SearchParameters
             {
@@ -98,8 +95,6 @@ public class GRPCAccomodationService : IAccomodationService
         return request;
     }
 
-
-
     private AccommodationSearchQuery CreateQuery1(DateTime startDate, DateTime endDate)
     {
         return new AccommodationSearchQuery
@@ -111,18 +106,9 @@ public class GRPCAccomodationService : IAccomodationService
                 {
                     Codes =
                     {
-                        new LocationCode { Code = "IATA4589", Type = LocationCodeType.IataCode },
-                        //new LocationCode { Code = "ad reprehenderit elit tempor", Type = (LocationCodeType)11 },
-                        //new LocationCode { Code = "eu eiusmod ullamco in Duis", Type = LocationCodeType.HereId }
+                        new LocationCode { Code = "IATA4589", Type = LocationCodeType.IataCode },                        
                     }
-                },
-                //LocationCoordinates = new Coordinates { Latitude = -52241880.494714186, Longitude = -1075615.0050410926 },
-                //LocationGeoTree = new GeoTree { Country = Country.Sc, Region = "Lorem sunt eu", CityOrResort = "Duis" },
-                //MealPlanCodes = { new Cmp.Types.V1.MealPlan { Code = Cmp.Types.V1.MealPlanCode.AiMinus, Description = "irure proident" } },
-                //RatePlans =
-                //{
-                //    new Cmp.Types.V1.RatePlan { RatePlanCode = "ut", RatePlanType = (Cmp.Types.V1.RatePlanType)14, RatePlanDescription = "sit nostrud veniam enim" }
-                //}
+                },                
             },
             TravelPeriod = new Cmp.Types.V1.TravelPeriod()
             {
@@ -132,93 +118,6 @@ public class GRPCAccomodationService : IAccomodationService
             UnitCount = 1,
             UnitType = UnitType.Unspecified
         };
-    }
-
-    private AccommodationSearchQuery CreateQuery2(DateTime startDate, DateTime endDate)
-    {
-        return new AccommodationSearchQuery
-        {
-            QueryId = 2,
-            SearchParametersAccommodation = new AccommodationSearchParameters
-            {
-                LocationCodes = new LocationCodes
-                {
-                    Codes = { new LocationCode { Code = "et non cupidatat cillum", Type = LocationCodeType.ProviderCode } }
-                },
-                LocationCoordinates = new Coordinates { Latitude = 99298836.4953902, Longitude = 64718032.39222962 },
-                MealPlanCodes =
-                {
-                    new Cmp.Types.V1.MealPlan{ Code = Cmp.Types.V1.MealPlanCode.Do, Description = "nostrud dolor" }
-                }
-            },
-            TravelPeriod = new Cmp.Types.V1.TravelPeriod()
-            {
-                StartDate = DateHelper.ToDate(startDate),
-                EndDate = DateHelper.ToDate(endDate),
-            }
-        };
-    }
-
-    private AccommodationSearchQuery CreateQuery3(DateTime startDate, DateTime endDate)
-    {
-        return new AccommodationSearchQuery
-        {
-            QueryId = 3,
-            SearchParametersAccommodation = new AccommodationSearchParameters
-            {
-                LocationCodes = new LocationCodes
-                {
-                    Codes = { new LocationCode { Code = "eiusmod ex occaecat", Type = (LocationCodeType)6 } }
-                },
-                LocationCoordinates = new Coordinates { Latitude = 3420395.826354608, Longitude = 16885397.05836156 },
-                MealPlanCodes =
-                {
-                    new Cmp.Types.V1.MealPlan { Code = Cmp.Types.V1.MealPlanCode.Lo, Description = "deserunt" }
-                }
-            },
-            TravelPeriod = new Cmp.Types.V1.TravelPeriod()
-            {
-                StartDate = DateHelper.ToDate(startDate),
-                EndDate = DateHelper.ToDate(endDate),
-            }
-        };
-    }
-
-    private AccommodationSearchQuery CreateQuery4(DateTime startDate, DateTime endDate)
-    {
-        return new AccommodationSearchQuery
-        {
-            QueryId = 4,
-            SearchParametersAccommodation = new AccommodationSearchParameters
-            {
-                LocationCodes = new LocationCodes
-                {
-                    Codes = { new LocationCode { Code = "culpa occaecat", Type = LocationCodeType.Unspecified } }
-                },
-                LocationCoordinates = new Coordinates { Latitude = 33272033.83711499, Longitude = 32878192.071919754 },
-                MealPlanCodes =
-                {
-                    new Cmp.Types.V1.MealPlan { Code = (Cmp.Types.V1.MealPlanCode)7, Description = "cupidatat eu" }
-                }
-            },
-            TravelPeriod = new Cmp.Types.V1.TravelPeriod()
-            {
-                StartDate = DateHelper.ToDate(startDate),
-                EndDate = DateHelper.ToDate(endDate),
-            }
-        };
-    }
-
-    public async Task<AccommodationSearchResponse> SearchAsync(AccommodationSearchRequest request)
-    {
-        using var channel = GrpcChannel.ForAddress(_options.Endpoints.AccomodationSearch);
-
-        var client = new AccommodationSearchService.AccommodationSearchServiceClient(channel);
-        PopulateHeaderVersion(request);
-        Metadata metadata = PopulateMetadata();
-        var response = await client.AccommodationSearchAsync(request, headers: metadata);
-
-        return response;
     }
 
     private static void PopulateHeaderVersion(AccommodationSearchRequest request)
